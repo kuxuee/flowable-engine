@@ -32,6 +32,8 @@ public class DbUtil {
 
     public static final String PRODUCT_NAME_POSTGRES = "PostgreSQL";
     public static final String PRODUCT_NAME_CRDB = "CockroachDB";
+    public static final String PRODUCT_NAME_DM = "DM DBMS";
+    public static final String PRODUCT_NAME_DAMENG = "Dameng";
 
     public static final String DATABASE_TYPE_H2 = "h2";
     public static final String DATABASE_TYPE_HSQL = "hsql";
@@ -49,6 +51,9 @@ public class DbUtil {
         databaseTypeMappings.setProperty("MySQL", DATABASE_TYPE_MYSQL);
         databaseTypeMappings.setProperty("MariaDB", DATABASE_TYPE_MYSQL);
         databaseTypeMappings.setProperty("Oracle", DATABASE_TYPE_ORACLE);
+        // DM8 is Oracle compatible and can reuse the Oracle SQL mappings and schema scripts.
+        databaseTypeMappings.setProperty(PRODUCT_NAME_DM, DATABASE_TYPE_ORACLE);
+        databaseTypeMappings.setProperty(PRODUCT_NAME_DAMENG, DATABASE_TYPE_ORACLE);
         databaseTypeMappings.setProperty(PRODUCT_NAME_POSTGRES, DATABASE_TYPE_POSTGRES);
         databaseTypeMappings.setProperty("Microsoft SQL Server", DATABASE_TYPE_MSSQL);
         databaseTypeMappings.setProperty(DATABASE_TYPE_DB2, DATABASE_TYPE_DB2);

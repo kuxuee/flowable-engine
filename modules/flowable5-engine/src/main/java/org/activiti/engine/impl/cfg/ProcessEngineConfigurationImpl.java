@@ -786,6 +786,8 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
         databaseTypeMappings.setProperty("HSQL Database Engine", DATABASE_TYPE_HSQL);
         databaseTypeMappings.setProperty("MySQL", DATABASE_TYPE_MYSQL);
         databaseTypeMappings.setProperty("Oracle", DATABASE_TYPE_ORACLE);
+        databaseTypeMappings.setProperty("DM DBMS", DATABASE_TYPE_ORACLE);
+        databaseTypeMappings.setProperty("Dameng", DATABASE_TYPE_ORACLE);
         databaseTypeMappings.setProperty("PostgreSQL", DATABASE_TYPE_POSTGRES);
         databaseTypeMappings.setProperty("Microsoft SQL Server", DATABASE_TYPE_MSSQL);
         databaseTypeMappings.setProperty(DATABASE_TYPE_DB2, DATABASE_TYPE_DB2);
