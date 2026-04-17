@@ -11,11 +11,30 @@
 
     <artifactId>flowable-spring-boot-sample-starter</artifactId>
 
+    <properties>
+        <dm.jdbc.version>8.1.1.193</dm.jdbc.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.dameng</groupId>
+            <artifactId>DmJdbcDriver18</artifactId>
+            <version>${dm.jdbc.version}</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
