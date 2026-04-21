@@ -34,6 +34,80 @@ Flowable V7 runs on a Java higher than or equal to version 17. Use the JDK packa
 
 [Flowable V6](https://github.com/flowable/flowable-engine/tree/flowable6.x) is still maintained and supports Java 8+.
 
+### DM8 Local Build
+
+This repository includes a helper script for building the customized Flowable artifacts with DM8 support and installing them into the local Maven repository.
+
+Run the script from the project root:
+
+```bat
+build-dm8-local.bat
+```
+
+By default it will:
+
+1. Set the project version to `8.1.0-dm8-SNAPSHOT`
+2. Run `clean install -DskipTests`
+
+This is equivalent to:
+
+```bat
+.\mvnw versions:set -DnewVersion=8.1.0-dm8-SNAPSHOT -DgenerateBackupPoms=false
+.\mvnw clean install -DskipTests
+```
+
+You can also provide a custom version:
+
+```bat
+build-dm8-local.bat 8.1.0-company-dm1
+```
+
+After the script finishes, the customized Flowable artifacts will be available in the local Maven repository and can be referenced from another project using the same version number.
+
+### Using The Customized Artifacts In Another Project
+
+After running the local build script, reference the customized Flowable version from your main project.
+
+Example Maven dependencies:
+
+```xml
+<properties>
+    <flowable.version>8.1.0-dm8-SNAPSHOT</flowable.version>
+    <dm.jdbc.version>8.1.1.193</dm.jdbc.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>org.flowable</groupId>
+        <artifactId>flowable-spring-boot-starter-process</artifactId>
+        <version>${flowable.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.dameng</groupId>
+        <artifactId>DmJdbcDriver18</artifactId>
+        <version>${dm.jdbc.version}</version>
+    </dependency>
+</dependencies>
+```
+
+Example Spring Boot configuration:
+
+```yaml
+spring:
+  datasource:
+    driver-class-name: dm.jdbc.driver.DmDriver
+    url: jdbc:dm://127.0.0.1:5236?schema=FLOWABLE
+    username: FLOWABLE
+    password: your-password
+
+flowable:
+  database-schema-update: true
+  database-schema: FLOWABLE
+```
+
+If you are using an older DM JDBC driver, append `comOra=true` to the JDBC URL.
+
 ### Flowable Design
 
 Flowable offers a free to use Flowable Cloud Design application, which you can use to model CMMN, BPMN, DMN and other model types. You can register via the Flowable account registration page to get started https://www.flowable.com/account/open-source.
